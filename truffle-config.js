@@ -11,36 +11,19 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
-  plugins: [
-    "truffle-plugin-verify"
-  ],
+  plugins: ["truffle-plugin-verify"],
 
   networks: {
-    mainnet: {
-      provider: () => {
-        return new HDWalletProvider({
-          privateKeys: [ process.env.PRIVATE_KEY ],
-          providerOrUrl: process.env.NODE
-        })
-      },
-      network_id: 1,
-      //gas: 20000000,
-      gasPrice: 70000000000,
-      confirmations: 2,
-      timeoutBlocks: 200,
-      skipDryRun: false,
-    },
     rinkeby: {
       provider: () => {
         return new HDWalletProvider({
           mnemonic: {
-            phrase: process.env.MNEMONIC
+            phrase: process.env.MNEMONIC,
           },
-          providerOrUrl: process.env.NODE
-        })
+          providerOrUrl: process.env.NODE,
+        });
       },
       network_id: 4,
-      gas: 4500000,
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
@@ -49,13 +32,26 @@ module.exports = {
       provider: () => {
         return new HDWalletProvider({
           mnemonic: {
-            phrase: process.env.MNEMONIC
+            phrase: process.env.MNEMONIC,
           },
-          providerOrUrl: process.env.NODE
-        })
+          providerOrUrl: process.env.NODE,
+        });
       },
       network_id: 42,
-      gas: 4500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+    },
+    mainnet: {
+      provider: () => {
+        return new HDWalletProvider({
+          mnemonic: {
+            phrase: process.env.MNEMONIC,
+          },
+          providerOrUrl: process.env.NODE,
+        });
+      },
+      network_id: 1,
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
@@ -63,8 +59,8 @@ module.exports = {
     development: {
       host: "localhost",
       port: 8545,
-      network_id: "*"
-    }
+      network_id: "*",
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -75,10 +71,10 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.6"
+      version: "0.8.6",
     },
   },
   api_keys: {
-    etherscan: process.env.ETH_SCAN_API_KEY, 
-  }
+    etherscan: process.env.ETH_SCAN_API_KEY,
+  },
 };
